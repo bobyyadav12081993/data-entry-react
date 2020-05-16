@@ -40,7 +40,8 @@ class DataEntry extends React.Component {
   }
 
   openDayModal() {
-    this.setState({ rowData: null });
+    // this.setState({ rowData: null });
+    this.props.resetState();
     this.dayModalRef.current.openModal();
   }
 
@@ -50,10 +51,12 @@ class DataEntry extends React.Component {
   }
 
   editData(row) {
-    console.log(row);
-    this.setState({ rowData: row }, () => {
-      this.dayModalRef.current.openModal();
+    console.log(this.props);
+    this.props.editDayData({
+      isUpdate: true,
+      dayData: row,
     });
+    this.dayModalRef.current.openModal();
   }
   render() {
     return (

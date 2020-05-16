@@ -18,37 +18,16 @@ class DayData extends React.Component {
     this.modalRef = React.createRef();
     this.state = this.initialState;
     this.handleChange = this.handleChange.bind(this);
-    this.resetState = this.resetState.bind(this);
-  }
-
-  resetState() {
-    this.setState({
-      dayData: {
-        dateReported: "",
-        recovered: "",
-        deceased: "",
-        name: "",
-        stateName: "",
-        newCases: "",
-      },
-      isUpdate: false,
-    });
   }
 
   handleChange() {}
 
-  componentWillReceiveProps(prop) {
-    console.log(prop);
-    if (prop.dayData) {
-      this.setState({ isUpdate: true, dayData: prop.dayData }, () => {
-        console.log("state update::", this.state);
-      });
-    } else {
-      this.setState(this.initialState);
-    }
+  componentWillReceiveProps(props) {
+    this.setState(props);
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="modal-content">
         <div className="modal-header">

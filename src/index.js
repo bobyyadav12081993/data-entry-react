@@ -5,13 +5,17 @@ import "popper.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "./index.css";
+import { createStore } from "redux";
 import App from "./App";
+import reducer from "./reducer/reducer";
+import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
+const store = createStore(reducer);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
 

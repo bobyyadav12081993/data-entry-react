@@ -6,7 +6,7 @@ class ReviewData extends React.Component {
       <div className="modal-content">
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
-            Add Data
+            Review Data
           </h5>
           <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -15,7 +15,37 @@ class ReviewData extends React.Component {
         <div className="modal-body">
           <div className="row">
             <div className="col-6">
-              <label>Operator Name</label>
+              <label>Date Entry Operator Name</label>
+            </div>
+            <div className="col-6">: {this.props.dayData.name}</div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label>State or UT</label>
+            </div>
+            <div className="col-6">: {this.props.dayData.name}</div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label>Date Reported</label>
+            </div>
+            <div className="col-6">: {this.props.dayData.name}</div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label>New Cases Reported</label>
+            </div>
+            <div className="col-6">: {this.props.dayData.name}</div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label>Recovered Cases</label>
+            </div>
+            <div className="col-6">: {this.props.dayData.name}</div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <label>Deceased Cases</label>
             </div>
             <div className="col-6">: {this.props.dayData.name}</div>
           </div>

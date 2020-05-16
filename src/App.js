@@ -1,15 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/header/header.component';
-import DataEntry from './components/data-entry/data-entry.component';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Navbar from "./components/header/header.component";
+// import DataEntry from './components/data-entry/data-entry.component';
+import DataEntry from "./container/data-entry-container";
 
 class App extends React.Component {
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Navbar></Navbar>
-        <div className='container-fluid'>
+        <div className="container-fluid">
           <DataEntry></DataEntry>
         </div>
 
