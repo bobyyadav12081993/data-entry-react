@@ -16,12 +16,22 @@ class DataEntry extends React.Component {
     this.openDayModal = this.openDayModal.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.editData = this.editData.bind(this);
+    this.getData = this.getData.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {
+  handleInputChange(event) {
+    this.props.changeTheme(event.target.checked);
+  }
+
+  getData() {
     GET(API_URL.GET_DATA).then((data) => {
       this.setState({ data });
     });
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   openDayModal() {
@@ -48,22 +58,22 @@ class DataEntry extends React.Component {
       <div>
         <div className="form-group row">
           <div className="form-check col text-right">
-            <input className="form-check-input" id="theme" type="checkbox"></input>
-            <label className="form-check-label" htmlFor="theme">
+            <input className="form-check-input" onChange={this.handleInputChange} id="theme" type="checkbox"></input>
+            <label className={`form-check-label cus-text-${this.props.theme}`} htmlFor="theme">
               Dark Theme
             </label>
           </div>
         </div>
 
         <div className="row form-group">
-          <button onClick={this.openDayModal} className="btn btn-success mx-auto">
+          <button onClick={this.openDayModal} className={`btn btn-${this.props.theme} mx-auto`}>
             Add Data
           </button>
         </div>
 
         <div>
-          <table className="table">
-            <thead>
+          <table className={`table ${this.props.theme === "dark" ? "table-dark" : ""} table-hover`}>
+            <thead className={`thead-${this.props.theme}`}>
               <tr>
                 <th scope="col">State</th>
                 <th scope="col">Date</th>
@@ -93,7 +103,7 @@ class DataEntry extends React.Component {
             </tbody>
           </table>
         </div>
-        <DayModal ref={this.dayModalRef}></DayModal>
+        <DayModal getData={this.getData} ref={this.dayModalRef}></DayModal>
       </div>
     );
   }

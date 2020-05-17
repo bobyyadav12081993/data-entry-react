@@ -3,7 +3,7 @@ import React from "react";
 class ReviewData extends React.Component {
   render() {
     return (
-      <div className="modal-content">
+      <div className={`modal-content theme-${this.props.theme}`}>
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
             Review Data

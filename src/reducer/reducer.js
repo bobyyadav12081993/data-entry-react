@@ -1,4 +1,4 @@
-import { ADD_DAY_DATA, RESET_STATE, EDIT_DAY_DATA, CHANGE_IS_REVIEW } from "./../constants/actionType";
+import { ADD_DAY_DATA, RESET_STATE, EDIT_DAY_DATA, CHANGE_IS_REVIEW, CHANGE_THEME } from "./../constants/actionType";
 import { combineReducers } from "redux";
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   },
   isReview: false,
   isUpdate: false,
+  theme: "light",
 };
 
 function dataEntry(state = initialState, action) {
@@ -21,7 +22,11 @@ function dataEntry(state = initialState, action) {
         dayData: JSON.parse(JSON.stringify(action.dayData)),
       });
     case RESET_STATE:
-      return initialState;
+      return Object.assign({}, state, {
+        dayData: JSON.parse(JSON.stringify(initialState.dayData)),
+        isUpdate: initialState.isUpdate,
+        isReview: initialState.isReview,
+      });
     case EDIT_DAY_DATA:
       return Object.assign({}, state, {
         dayData: JSON.parse(JSON.stringify(action.data.dayData)),
@@ -31,6 +36,11 @@ function dataEntry(state = initialState, action) {
     case CHANGE_IS_REVIEW:
       return Object.assign({}, state, {
         isReview: action.isReview,
+      });
+    case CHANGE_THEME:
+      console.log("change theme");
+      return Object.assign({}, state, {
+        theme: action.theme ? "dark" : "light",
       });
     default:
       return state;

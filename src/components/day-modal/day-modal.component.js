@@ -1,11 +1,12 @@
 import React from "react";
 import $ from "jquery";
+import "./day-modal.scss";
 // import DayData from "../day-data/day-data.component";
 import DayData from "../../container/day-data-container";
 
 // import ReviewData from "./../day-review-modal/day-review-modal.component";
 import ReviewData from "./../../container/day-review-container";
-import { POST, GET } from "./../../services/http.service";
+import { POST } from "./../../services/http.service";
 import { API_URL } from "../../constants/constants";
 
 class DayModal extends React.Component {
@@ -41,6 +42,7 @@ class DayModal extends React.Component {
     const url = this.props.isUpdate ? API_URL.UPDATE_DATA : API_URL.ADD_DATA;
     POST(url, payload).then((res) => {
       console.log(res);
+      this.props.getData();
       this.closeModal();
     });
   }

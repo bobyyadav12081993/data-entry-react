@@ -6,6 +6,7 @@ const mapStateToProps = (state, ownProps) => {
     dayData: state.dataEntry.dayData,
     isUpdate: state.dataEntry.isUpdate,
     nextClick: ownProps.nextClick,
+    theme: state.dataEntry.theme,
   };
 };
 

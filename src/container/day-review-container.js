@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import ReviewData from "./../components/day-review-modal/day-review-modal.component";
+import ReviewData from "../components/day-review/day-review.component";
 
 const mapStateToProps = (state, ownProps) => {
   console.log("state in day review", state);
@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
     dayData: state.dataEntry.dayData,
     cancelReview: ownProps.cancelReview,
     confirmReview: ownProps.confirmReview,
+    theme: state.dataEntry.theme,
   };
 };
 

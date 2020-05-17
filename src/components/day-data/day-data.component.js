@@ -25,11 +25,25 @@ class DayData extends React.Component {
   }
 
   handleChange(event) {
+    const numericFields = ["recovered", "deceased", "dateReported"];
     let dayData = this.state.dayData;
-    dayData[event.target.name] = event.target.value;
-    this.setState({
-      dayData,
-    });
+    if (numericFields.includes(event.target.name)) {
+      const regex = /^[0-9\b]+$/;
+
+      // if value is not blank, then test the regex
+
+      if (event.target.value === "" || regex.test(event.target.value)) {
+        dayData[event.target.name] = event.target.value;
+        this.setState({
+          dayData,
+        });
+      }
+    } else {
+      dayData[event.target.name] = event.target.value;
+      this.setState({
+        dayData,
+      });
+    }
   }
 
   componentDidMount() {
@@ -54,7 +68,7 @@ class DayData extends React.Component {
 
   render() {
     return (
-      <div className="modal-content">
+      <div className={`modal-content theme-${this.props.theme}`}>
         <div className="modal-header">
           <h5 className="modal-title" id="exampleModalLabel">
             Add Data
@@ -87,14 +101,6 @@ class DayData extends React.Component {
               <label className="col-form-label" htmlFor="exampleInputPassword1">
                 State or UT
               </label>
-              {/* <input
-                value={this.state.dayData.stateName}
-                onChange={this.handleChange}
-                type="text"
-                className="form-control"
-                id="stateOrUt"
-                placeholder="State or UT"
-              /> */}
               <Autocomplete
                 value={this.state.dayData.stateName}
                 onChange={this.handleAutoComplete}

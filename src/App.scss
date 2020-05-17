@@ -3,6 +3,28 @@
   pointer-events: none;
 }
 
+.cus-text-light {
+  color: #343a40 !important;
+}
+
+.btn-light {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.cus-text-dark {
+  color: #f8f9fa !important;
+}
+
+.dark {
+  background-color: #282c34;
+}
+
+.light {
+  background-color: #fff;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

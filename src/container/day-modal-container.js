@@ -7,6 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     dayData: state.dataEntry.dayData,
     isReview: state.dataEntry.isReview,
     isUpdate: state.dataEntry.isUpdate,
+    getData: ownProps.getData,
+    theme: state.dataEntry.theme,
   };
 };
 export default connect(mapStateToProps, { addDayData, changeIsReview }, null, { forwardRef: true })(DayModal);

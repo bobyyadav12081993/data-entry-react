@@ -1,10 +1,15 @@
 import React from "react";
-import "./App.css";
-import Navbar from "./components/header/header.component";
+import "./App.scss";
+// import Navbar from "./components/header/header.component";
+import Navbar from "./container/header-container";
 // import DataEntry from './components/data-entry/data-entry.component';
 import DataEntry from "./container/data-entry-container";
+import { changeBodyTheme } from "./services/utility";
 
 class App extends React.Component {
+  componentWillMount() {
+    changeBodyTheme();
+  }
   render() {
     return (
       <div className="App">
