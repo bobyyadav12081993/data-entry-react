@@ -83,7 +83,7 @@ export class Autocomplete extends Component {
     if (showOptions && userInput) {
       if (filteredOptions.length) {
         optionList = (
-          <ul className="list-group">
+          <ul className={`list-group text-${this.props.theme}`}>
             {filteredOptions.map((optionName, index) => {
               let className;
               if (index === activeOption) {

@@ -131,6 +131,7 @@ class DayData extends React.Component {
                 State or UT
               </label>
               <Autocomplete
+                theme={this.props.theme}
                 value={this.state.dayData.stateName}
                 onChange={this.handleAutoComplete}
                 options={this.state.statesNames}
