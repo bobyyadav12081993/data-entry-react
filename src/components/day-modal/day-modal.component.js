@@ -9,9 +9,7 @@ import ReviewData from "./../../container/day-review-container";
 class DayModal extends React.Component {
   constructor(props) {
     super(props);
-    this.modalRef = React.createRef();
     this.state = {
-      dayData: null,
       isPreview: false,
     };
     this.closeModal = this.closeModal.bind(this);
@@ -23,6 +21,7 @@ class DayModal extends React.Component {
 
   nextClick(data) {
     console.log("next function");
+    this.props.addDayData(data);
     this.setState({ isPreview: true });
   }
 

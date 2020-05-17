@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/header/header.component";
 // import DataEntry from './components/data-entry/data-entry.component';

@@ -1,5 +1,6 @@
 import React from "react";
-import DayModal from "./../day-modal/day-modal.component";
+// import DayModal from "./../day-modal/day-modal.component";
+import DayModal from "./../../container/day-modal-container";
 
 class DataEntry extends React.Component {
   constructor() {
@@ -108,7 +109,7 @@ class DataEntry extends React.Component {
             </tbody>
           </table>
         </div>
-        <DayModal rowData={this.state.rowData} ref={this.dayModalRef} nextClick={this.nextClick}></DayModal>
+        <DayModal ref={this.dayModalRef}></DayModal>
       </div>
     );
   }

@@ -17,13 +17,13 @@ function dataEntry(state = initialState, action) {
   switch (action.type) {
     case ADD_DAY_DATA:
       return Object.assign({}, state, {
-        dayData: action.dayData,
+        dayData: JSON.parse(JSON.stringify(action.dayData)),
       });
     case RESET_STATE:
       return initialState;
     case EDIT_DAY_DATA:
       return Object.assign({}, state, {
-        dayData: action.data.dayData,
+        dayData: JSON.parse(JSON.stringify(action.data.dayData)),
         isUpdate: action.data.isUpdate,
       });
     default:

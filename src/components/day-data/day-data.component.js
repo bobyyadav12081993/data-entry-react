@@ -1,5 +1,6 @@
 import React from "react";
-import $ from "jquery";
+import Autocomplete from "../utilities/autocomplete";
+import { STATES } from "../../constants/constants";
 
 class DayData extends React.Component {
   constructor(props) {
@@ -14,20 +15,43 @@ class DayData extends React.Component {
         newCases: "",
       },
       isUpdate: false,
+      statesNames: STATES,
     };
     this.modalRef = React.createRef();
     this.state = this.initialState;
     this.handleChange = this.handleChange.bind(this);
+    this.handleAutoComplete = this.handleAutoComplete.bind(this);
   }
 
-  handleChange() {}
+  handleChange(event) {
+    let dayData = this.state.dayData;
+    dayData[event.target.name] = event.target.value;
+    this.setState({
+      dayData,
+    });
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    if (this.props.dayData) {
+      this.setState({ dayData: this.props.dayData, isUpdate: this.props.isUpdate });
+    }
+  }
 
   componentWillReceiveProps(props) {
-    this.setState(props);
+    console.log("props received", props);
+    this.setState({ dayData: props.dayData, isUpdate: props.isUpdate });
+  }
+
+  handleAutoComplete(value) {
+    let dayData = this.state.dayData;
+    dayData.stateName = value;
+    this.setState({
+      dayData,
+    });
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="modal-content">
         <div className="modal-header">
@@ -47,7 +71,8 @@ class DayData extends React.Component {
               <input
                 type="text"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="operatorName"
+                name="name"
                 aria-describedby="emailHelp"
                 placeholder="Data Entry Operator Name"
                 value={this.state.dayData.name}
@@ -61,14 +86,19 @@ class DayData extends React.Component {
               <label className="col-form-label" htmlFor="exampleInputPassword1">
                 State or UT
               </label>
-              <input
+              {/* <input
                 value={this.state.dayData.stateName}
                 onChange={this.handleChange}
                 type="text"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="stateOrUt"
                 placeholder="State or UT"
-              />
+              /> */}
+              <Autocomplete
+                value={this.state.dayData.stateName}
+                onChange={this.handleAutoComplete}
+                options={this.state.statesNames}
+              ></Autocomplete>
             </div>
             <div className="form-group">
               <label className="col-form-label" htmlFor="exampleInputPassword1">
@@ -77,8 +107,9 @@ class DayData extends React.Component {
               <input
                 value={this.state.dayData.dateReported}
                 type="text"
+                name="dateReported"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="dateReported"
                 placeholder="Date Reported"
                 onChange={this.handleChange}
               />
@@ -91,7 +122,8 @@ class DayData extends React.Component {
                 value={this.state.dayData.newCases}
                 type="text"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="newCases"
+                name="newCases"
                 placeholder="New Cases Reported"
                 onChange={this.handleChange}
               />
@@ -104,7 +136,8 @@ class DayData extends React.Component {
                 value={this.state.dayData.recovered}
                 type="text"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="recoveredCases"
+                name="recovered"
                 placeholder="Recovered Cases"
                 onChange={this.handleChange}
               />
@@ -117,7 +150,8 @@ class DayData extends React.Component {
                 value={this.state.dayData.deceased}
                 type="text"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="deceasedCases"
+                name="deceased"
                 placeholder="Deceased Cases"
                 onChange={this.handleChange}
               />
