@@ -101,9 +101,9 @@ class DataEntry extends React.Component {
     return (
       <div>
         <div className="form-group row">
-          <div className="form-check col text-right">
-            <input className="form-check-input" onChange={this.handleInputChange} id="theme" type="checkbox"></input>
-            <label className={`form-check-label cus-text-${this.props.theme}`} htmlFor="theme">
+          <div className="custom-control custom-switch col text-right">
+            <input className="custom-control-input" onChange={this.handleInputChange} id="theme" type="checkbox"></input>
+            <label className={`custom-control-label cus-text-${this.props.theme}`} htmlFor="theme">
               Dark Theme
             </label>
           </div>
