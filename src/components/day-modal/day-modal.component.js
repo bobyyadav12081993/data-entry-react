@@ -5,6 +5,8 @@ import DayData from "../../container/day-data-container";
 
 // import ReviewData from "./../day-review-modal/day-review-modal.component";
 import ReviewData from "./../../container/day-review-container";
+import { POST, GET } from "./../../services/http.service";
+import { API_URL } from "../../constants/constants";
 
 class DayModal extends React.Component {
   constructor(props) {
@@ -17,17 +19,30 @@ class DayModal extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.cancelReview = this.cancelReview.bind(this);
+    this.confirmReview = this.confirmReview.bind(this);
   }
 
   nextClick(data) {
     console.log("next function");
     this.props.addDayData(data);
-    this.setState({ isPreview: true });
+    this.props.changeIsReview(true);
   }
 
   cancelReview() {
     console.log("cancelReview function");
-    this.setState({ isPreview: false });
+    this.props.changeIsReview(false);
+  }
+
+  confirmReview() {
+    console.log("review confirmed", this.props.dayData);
+    const payload = {
+      dayData: this.props.dayData,
+    };
+    const url = this.props.isUpdate ? API_URL.UPDATE_DATA : API_URL.ADD_DATA;
+    POST(url, payload).then((res) => {
+      console.log(res);
+      this.closeModal();
+    });
   }
 
   openModal() {
@@ -35,8 +50,8 @@ class DayModal extends React.Component {
   }
 
   modalContent() {
-    if (this.state.isPreview) {
-      return <ReviewData cancelReview={this.cancelReview}></ReviewData>;
+    if (this.props.isReview) {
+      return <ReviewData confirmReview={this.confirmReview} cancelReview={this.cancelReview}></ReviewData>;
     } else {
       return <DayData nextClick={this.nextClick}></DayData>;
     }

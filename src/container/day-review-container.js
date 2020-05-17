@@ -5,8 +5,8 @@ const mapStateToProps = (state, ownProps) => {
   console.log("state in day review", state);
   return {
     dayData: state.dataEntry.dayData,
-    isUpdate: state.dataEntry.isUpdate,
     cancelReview: ownProps.cancelReview,
+    confirmReview: ownProps.confirmReview,
   };
 };
 

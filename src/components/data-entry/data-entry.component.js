@@ -1,38 +1,16 @@
 import React from "react";
 // import DayModal from "./../day-modal/day-modal.component";
 import DayModal from "./../../container/day-modal-container";
+import { GET } from "../../services/http.service";
+import { API_URL } from "../../constants/constants";
+import * as moment from "moment";
 
 class DataEntry extends React.Component {
   constructor() {
     super();
     this.dayModalRef = React.createRef();
     this.state = {
-      data: [
-        {
-          stateName: "Maharashtra",
-          dateReported: "12/05/2020",
-          newCases: 1000,
-          recovered: 35,
-          deceased: 10,
-          name: "Test",
-        },
-        {
-          stateName: "Maharashtra",
-          dateReported: "12/05/2020",
-          newCases: 1000,
-          recovered: 35,
-          deceased: 10,
-          name: "Test",
-        },
-        {
-          stateName: "Maharashtra",
-          dateReported: "12/05/2020",
-          newCases: 1000,
-          recovered: 35,
-          deceased: 10,
-          name: "Test",
-        },
-      ],
+      data: [],
       rowData: null,
     };
     this.openDayModal = this.openDayModal.bind(this);
@@ -40,8 +18,13 @@ class DataEntry extends React.Component {
     this.editData = this.editData.bind(this);
   }
 
+  componentDidMount() {
+    GET(API_URL.GET_DATA).then((data) => {
+      this.setState({ data });
+    });
+  }
+
   openDayModal() {
-    // this.setState({ rowData: null });
     this.props.resetState();
     this.dayModalRef.current.openModal();
   }
@@ -56,6 +39,7 @@ class DataEntry extends React.Component {
     this.props.editDayData({
       isUpdate: true,
       dayData: row,
+      isReview: false,
     });
     this.dayModalRef.current.openModal();
   }
@@ -94,7 +78,7 @@ class DataEntry extends React.Component {
                 return (
                   <tr key={i}>
                     <td>{row.stateName}</td>
-                    <td>{row.dateReported}</td>
+                    <td>{moment(row.dateReported).format("DD/MM/YYYY")}</td>
                     <td>{row.newCases}</td>
                     <td>{row.recovered}</td>
                     <td>{row.deceased}</td>

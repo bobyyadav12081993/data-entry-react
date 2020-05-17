@@ -55,8 +55,8 @@ class ReviewData extends React.Component {
             <button onClick={this.props.cancelReview} type="button" className="btn btn-secondary mr-2">
               Cancel
             </button>
-            <button type="button" className="btn btn-primary">
-              Next
+            <button onClick={this.props.confirmReview} type="button" className="btn btn-primary">
+              Review and Confirm
             </button>
           </div>
         </div>

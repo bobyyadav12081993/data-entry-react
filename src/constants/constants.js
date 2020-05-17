@@ -36,3 +36,13 @@ export const STATES = [
   "Lakshadweep",
   "Puducherry",
 ];
+
+export const CONFIG = {
+  HOST: "http://localhost:8080",
+};
+
+export const API_URL = {
+  ADD_DATA: "/api/add/data",
+  GET_DATA: "/api/get/data",
+  UPDATE_DATA: "/api/update/data",
+};

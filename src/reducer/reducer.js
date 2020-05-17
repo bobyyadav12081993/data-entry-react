@@ -1,4 +1,4 @@
-import { ADD_DAY_DATA, RESET_STATE, EDIT_DAY_DATA } from "./../constants/actionType";
+import { ADD_DAY_DATA, RESET_STATE, EDIT_DAY_DATA, CHANGE_IS_REVIEW } from "./../constants/actionType";
 import { combineReducers } from "redux";
 
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
     stateName: "",
     newCases: "",
   },
+  isReview: false,
   isUpdate: false,
 };
 
@@ -25,6 +26,11 @@ function dataEntry(state = initialState, action) {
       return Object.assign({}, state, {
         dayData: JSON.parse(JSON.stringify(action.data.dayData)),
         isUpdate: action.data.isUpdate,
+        isReview: action.data.isReview,
+      });
+    case CHANGE_IS_REVIEW:
+      return Object.assign({}, state, {
+        isReview: action.isReview,
       });
     default:
       return state;

@@ -1,6 +1,7 @@
 import React from "react";
 import Autocomplete from "../utilities/autocomplete";
 import { STATES } from "../../constants/constants";
+import * as moment from "moment";
 
 class DayData extends React.Component {
   constructor(props) {
@@ -105,8 +106,8 @@ class DayData extends React.Component {
                 Date Reported
               </label>
               <input
-                value={this.state.dayData.dateReported}
-                type="text"
+                value={moment(this.state.dayData.dateReported).format("YYYY-MM-DD")}
+                type="date"
                 name="dateReported"
                 className="form-control"
                 id="dateReported"
