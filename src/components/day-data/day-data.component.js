@@ -60,9 +60,6 @@ class DayData extends React.Component {
     let dayData = this.state.dayData;
     if (numericFields.includes(event.target.name)) {
       const regex = /^[0-9\b]+$/;
-
-      // if value is not blank, then test the regex
-
       if (event.target.value === "" || regex.test(event.target.value)) {
         dayData[event.target.name] = event.target.value;
         this.setState({

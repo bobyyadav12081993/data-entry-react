@@ -1,10 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import "./day-modal.scss";
-// import DayData from "../day-data/day-data.component";
 import DayData from "../../container/day-data-container";
-
-// import ReviewData from "./../day-review-modal/day-review-modal.component";
 import ReviewData from "./../../container/day-review-container";
 import { POST } from "./../../services/http.service";
 import { API_URL } from "../../constants/constants";

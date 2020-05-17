@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-// import DayModal from "./../day-modal/day-modal.component";
 import DayModal from "./../../container/day-modal-container";
 import { GET } from "../../services/http.service";
 import { API_URL } from "../../constants/constants";
@@ -15,7 +14,7 @@ class DataEntry extends React.Component {
       data: [],
       pagination: 1,
     };
-    this.limit = 1;
+    this.limit = 50;
     this.openDayModal = this.openDayModal.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.editData = this.editData.bind(this);
