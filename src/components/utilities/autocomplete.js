@@ -40,17 +40,12 @@ export class Autocomplete extends Component {
   }
 
   onClick(e) {
-    this.setState(
-      {
-        activeOption: 0,
-        filteredOptions: [],
-        showOptions: false,
-        userInput: e.currentTarget.innerText,
-      },
-      () => {
-        // this.props.onChange(e.currentTarget.innerText);
-      }
-    );
+    this.setState({
+      activeOption: 0,
+      filteredOptions: [],
+      showOptions: false,
+      userInput: e.currentTarget.innerText,
+    });
     this.props.onChange(e.currentTarget.innerText);
   }
   onKeyDown(e) {
@@ -113,7 +108,7 @@ export class Autocomplete extends Component {
     return (
       <React.Fragment>
         <div className="search">
-          <input type="text" className="form-control" onChange={onChange} onKeyDown={onKeyDown} value={userInput} />
+          <input type="text" className="form-control" onChange={onChange} onKeyDown={onKeyDown} value={userInput} required />
           {/* <input type="submit" value="" className="search-btn" /> */}
         </div>
         {optionList}

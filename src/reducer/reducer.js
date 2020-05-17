@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
   dayData: {
-    dateReported: "",
+    dateReported: new Date(),
     recovered: "",
     deceased: "",
     name: "",

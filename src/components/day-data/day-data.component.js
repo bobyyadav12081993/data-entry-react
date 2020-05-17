@@ -15,6 +15,7 @@ class DayData extends React.Component {
         stateName: "",
         newCases: "",
       },
+      isInvalid: false,
       isUpdate: false,
       statesNames: STATES,
     };
@@ -22,6 +23,36 @@ class DayData extends React.Component {
     this.state = this.initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleAutoComplete = this.handleAutoComplete.bind(this);
+    this.nextClickHandler = this.nextClickHandler.bind(this);
+    this.validateData = this.validateData.bind(this);
+  }
+
+  validateData() {
+    let fields = this.state.dayData;
+    let formIsValid = true;
+    if (!fields["name"]) {
+      formIsValid = false;
+    } else if (!fields["dateReported"]) {
+      formIsValid = false;
+    } else if (!fields["recovered"]) {
+      formIsValid = false;
+    } else if (!fields["newCases"]) {
+      formIsValid = false;
+    } else if (!fields["stateName"]) {
+      formIsValid = false;
+    } else if (!fields["deceased"]) {
+      formIsValid = false;
+    }
+    return formIsValid;
+  }
+
+  nextClickHandler() {
+    if (this.validateData()) {
+      this.setState({ isInvalid: false });
+      this.props.nextClick(this.state.dayData);
+    } else {
+      this.setState({ isInvalid: true });
+    }
   }
 
   handleChange(event) {
@@ -49,13 +80,14 @@ class DayData extends React.Component {
   componentDidMount() {
     console.log(this.props);
     if (this.props.dayData) {
-      this.setState({ dayData: this.props.dayData, isUpdate: this.props.isUpdate });
+      this.initialState.dayData = this.props.dayData;
+      this.setState(this.initialState);
     }
   }
 
   componentWillReceiveProps(props) {
     console.log("props received", props);
-    this.setState({ dayData: props.dayData, isUpdate: props.isUpdate });
+    this.setState({ dayData: props.dayData, isUpdate: props.isUpdate, isInvalid: false });
   }
 
   handleAutoComplete(value) {
@@ -78,7 +110,7 @@ class DayData extends React.Component {
           </button>
         </div>
         <div className="modal-body">
-          <form>
+          <form className={"needs-validation " + (this.state.isInvalid ? "was-validated" : "")} noValidate>
             <div className="form-group">
               <label className="col-form-label" htmlFor="exampleInputEmail1">
                 Data Entry Operator Name
@@ -88,14 +120,11 @@ class DayData extends React.Component {
                 className="form-control"
                 id="operatorName"
                 name="name"
-                aria-describedby="emailHelp"
                 placeholder="Data Entry Operator Name"
                 value={this.state.dayData.name}
                 onChange={this.handleChange}
+                required
               />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
             </div>
             <div className="form-group">
               <label className="col-form-label" htmlFor="exampleInputPassword1">
@@ -119,6 +148,7 @@ class DayData extends React.Component {
                 id="dateReported"
                 placeholder="Date Reported"
                 onChange={this.handleChange}
+                required
               />
             </div>
             <div className="form-group">
@@ -133,7 +163,11 @@ class DayData extends React.Component {
                 name="newCases"
                 placeholder="New Cases Reported"
                 onChange={this.handleChange}
+                required
               />
+              <small id="passwordHelpBlock" className="form-text text-muted">
+                Only Numbers are accepted
+              </small>
             </div>
             <div className="form-group">
               <label className="col-form-label" htmlFor="exampleInputPassword1">
@@ -147,7 +181,11 @@ class DayData extends React.Component {
                 name="recovered"
                 placeholder="Recovered Cases"
                 onChange={this.handleChange}
+                required
               />
+              <small id="passwordHelpBlock" className="form-text text-muted">
+                Only Numbers are accepted
+              </small>
             </div>
             <div className="form-group">
               <label className="col-form-label" htmlFor="exampleInputPassword1">
@@ -161,7 +199,11 @@ class DayData extends React.Component {
                 name="deceased"
                 placeholder="Deceased Cases"
                 onChange={this.handleChange}
+                required
               />
+              <small id="passwordHelpBlock" className="form-text text-muted">
+                Only Numbers are accepted
+              </small>
             </div>
           </form>
         </div>
@@ -170,7 +212,7 @@ class DayData extends React.Component {
             <button type="button" className="btn btn-secondary mr-2" data-dismiss="modal">
               Cancel
             </button>
-            <button onClick={() => this.props.nextClick(this.state.dayData)} type="button" className="btn btn-primary">
+            <button onClick={this.nextClickHandler} type="button" className="btn btn-primary">
               Next
             </button>
           </div>
