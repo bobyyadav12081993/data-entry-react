@@ -5,6 +5,7 @@ import DayModal from "./../../container/day-modal-container";
 import { GET } from "../../services/http.service";
 import { API_URL } from "../../constants/constants";
 import * as moment from "moment";
+import "./data-entry.scss";
 
 class DataEntry extends React.Component {
   constructor() {
@@ -14,7 +15,7 @@ class DataEntry extends React.Component {
       data: [],
       pagination: 1,
     };
-    this.limit = 50;
+    this.limit = 1;
     this.openDayModal = this.openDayModal.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.editData = this.editData.bind(this);
@@ -43,7 +44,7 @@ class DataEntry extends React.Component {
       for (let i = 1; i <= range; i++) {
         items.push(
           <li key={i} onClick={() => this.changePagination(i)} className={"page-item " + (this.state.pagination === i ? "active" : "")}>
-            <a className="page-link" href="#">
+            <a className={"page-link " + this.props.theme} href="#">
               {i}
             </a>
           </li>
@@ -53,7 +54,7 @@ class DataEntry extends React.Component {
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             <li onClick={this.previousPagination} className={"page-item " + (this.state.pagination === 1 ? "disabled" : "")}>
-              <a className="page-link" href="#">
+              <a className={"page-link " + this.props.theme} href="#">
                 Previous
               </a>
             </li>
