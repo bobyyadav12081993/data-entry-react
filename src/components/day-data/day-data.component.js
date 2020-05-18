@@ -85,7 +85,6 @@ class DayData extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     if (this.props.dayData) {
       this.initialState.dayData = this.props.dayData;
       this.setState(this.initialState);
@@ -93,7 +92,6 @@ class DayData extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log("props received", props);
     this.setState({ dayData: props.dayData, isUpdate: props.isUpdate, isInvalid: false });
   }
 

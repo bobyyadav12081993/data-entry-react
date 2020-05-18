@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import ReviewData from "../components/day-review/day-review.component";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state in day review", state);
   return {
     dayData: state.dataEntry.dayData,
     cancelReview: ownProps.cancelReview,

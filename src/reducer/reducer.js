@@ -38,7 +38,6 @@ function dataEntry(state = initialState, action) {
         isReview: action.isReview,
       });
     case CHANGE_THEME:
-      console.log("change theme");
       return Object.assign({}, state, {
         theme: action.theme ? "dark" : "light",
       });

@@ -1,5 +1,4 @@
 export const changeBodyTheme = (theme) => {
-  console.log("utilty", theme);
   switch (theme) {
     case "light":
       document.body.classList.add("light");

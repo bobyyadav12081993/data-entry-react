@@ -21,24 +21,20 @@ class DayModal extends React.Component {
   }
 
   nextClick(data) {
-    console.log("next function");
     this.props.addDayData(data);
     this.props.changeIsReview(true);
   }
 
   cancelReview() {
-    console.log("cancelReview function");
     this.props.changeIsReview(false);
   }
 
   confirmReview() {
-    console.log("review confirmed", this.props.dayData);
     const payload = {
       dayData: this.props.dayData,
     };
     const url = this.props.isUpdate ? API_URL.UPDATE_DATA : API_URL.ADD_DATA;
     POST(url, payload).then((res) => {
-      console.log(res);
       this.props.getData();
       this.closeModal();
     });

@@ -84,12 +84,10 @@ class DataEntry extends React.Component {
   }
 
   nextClick(data) {
-    console.log(data);
     this.dayModalRef.current.closeModal();
   }
 
   editData(row) {
-    console.log(this.props);
     this.props.editDayData({
       isUpdate: true,
       dayData: row,

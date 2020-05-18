@@ -16,7 +16,6 @@ export default class DatePicker extends Component {
     super();
     let year = moment().year();
     let month = moment().month();
-    console.log(todayTimestamp);
     this.state = {
       year,
       month,
@@ -117,7 +116,6 @@ export default class DatePicker extends Component {
   };
 
   getDateFromDateString = (dateValue) => {
-    console.log(dateValue);
     let dateData = dateValue.split("-").map((d) => parseInt(d, 10));
     if (dateData.length < 3) return null;
 
