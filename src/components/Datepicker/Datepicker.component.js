@@ -234,7 +234,7 @@ export default class DatePicker extends Component {
 
   render() {
     return (
-      <div className="MyDatePicker">
+      <div className="DatePicker">
         <div className="mdp-input" onClick={() => this.showDatePicker(true)}>
           <input type="date" className="form-control" onChange={this.updateDateFromInput} ref={inputRef} />
         </div>
