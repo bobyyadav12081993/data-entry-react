@@ -2,6 +2,7 @@ import React from "react";
 import Autocomplete from "../utilities/autocomplete";
 import { STATES } from "../../constants/constants";
 import * as moment from "moment";
+import DatePicker from "../Datepicker/Datepicker.component";
 
 class DayData extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class DayData extends React.Component {
     this.handleAutoComplete = this.handleAutoComplete.bind(this);
     this.nextClickHandler = this.nextClickHandler.bind(this);
     this.validateData = this.validateData.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   validateData() {
@@ -53,6 +55,14 @@ class DayData extends React.Component {
     } else {
       this.setState({ isInvalid: true });
     }
+  }
+
+  handleDateChange(value) {
+    let dayData = this.state.dayData;
+    dayData["dateReported"] = value;
+    this.setState({
+      dayData,
+    });
   }
 
   handleChange(event) {
@@ -138,7 +148,7 @@ class DayData extends React.Component {
               <label className="col-form-label" htmlFor="exampleInputPassword1">
                 Date Reported
               </label>
-              <input
+              {/* <input
                 value={moment(this.state.dayData.dateReported).format("YYYY-MM-DD")}
                 type="date"
                 name="dateReported"
@@ -147,7 +157,13 @@ class DayData extends React.Component {
                 placeholder="Date Reported"
                 onChange={this.handleChange}
                 required
-              />
+              /> */}
+              <div>
+                <DatePicker
+                  value={moment(this.state.dayData.dateReported).format("YYYY-MM-DD")}
+                  onChange={this.handleDateChange}
+                ></DatePicker>
+              </div>
             </div>
             <div className="form-group">
               <label className="col-form-label" htmlFor="exampleInputPassword1">
