@@ -1,4 +1,5 @@
 import React from "react";
+import * as moment from "moment";
 
 class ReviewData extends React.Component {
   render() {
@@ -29,7 +30,7 @@ class ReviewData extends React.Component {
             <div className="col-6">
               <label>Date Reported</label>
             </div>
-            <div className="col-6">: {this.props.dayData.dateReported}</div>
+            <div className="col-6">: {moment(this.props.dayData.dateReported).format("DD-MM-YYYY")}</div>
           </div>
           <div className="row">
             <div className="col-6">

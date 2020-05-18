@@ -56,7 +56,7 @@ class DayData extends React.Component {
   }
 
   handleChange(event) {
-    const numericFields = ["recovered", "deceased", "dateReported"];
+    const numericFields = ["recovered", "deceased", "newCases"];
     let dayData = this.state.dayData;
     if (numericFields.includes(event.target.name)) {
       const regex = /^[0-9\b]+$/;

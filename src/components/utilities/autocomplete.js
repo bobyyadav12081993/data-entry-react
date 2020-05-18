@@ -52,11 +52,16 @@ export class Autocomplete extends Component {
     const { activeOption, filteredOptions } = this.state;
 
     if (e.keyCode === 13) {
-      this.setState({
-        activeOption: 0,
-        showOptions: false,
-        userInput: filteredOptions[activeOption],
-      });
+      this.setState(
+        {
+          activeOption: 0,
+          showOptions: false,
+          userInput: filteredOptions[activeOption],
+        },
+        () => {
+          this.props.onChange(filteredOptions[activeOption]);
+        }
+      );
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
         return;
@@ -83,7 +88,7 @@ export class Autocomplete extends Component {
     if (showOptions && userInput) {
       if (filteredOptions.length) {
         optionList = (
-          <ul className={`list-group text-${this.props.theme}`}>
+          <ul className={`list-group text-dark`}>
             {filteredOptions.map((optionName, index) => {
               let className;
               if (index === activeOption) {
